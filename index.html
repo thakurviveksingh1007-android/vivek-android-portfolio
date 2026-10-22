@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vivek Singh — Android Developer</title>
+<meta name="description" content="Vivek Singh — Android Developer (Java, Kotlin, MVVM). 1 year professional experience building enterprise Android apps." />
+<meta name="theme-color" content="#07070c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%237c5cff'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>V</text></svg>" />
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="preloader__mark">VS</div>
+  <div class="preloader__bar"><span></span></div>
+  <div class="preloader__log" id="preloaderLog">$ ./build_portfolio.sh</div>
+</div>
+
+<div class="aurora" aria-hidden="true">
+  <div class="aurora__blob aurora__blob--1"></div>
+  <div class="aurora__blob aurora__blob--2"></div>
+  <div class="aurora__blob aurora__blob--3"></div>
+  <div class="aurora__grid"></div>
+</div>
+<div class="blueprint" aria-hidden="true">
+  <div class="blueprint__grid"></div>
+  <div class="blueprint__grid blueprint__grid--fine"></div>
+  <svg class="blueprint__marks" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="170" cy="210" r="86" stroke-dasharray="7 9" />
+      <circle cx="170" cy="210" r="124" stroke-dasharray="2 11" opacity=".6" />
+      <path d="M170 96v-34M170 324v34M56 210h-34M284 210h34" stroke-dasharray="5 7" />
+      <path d="M1210 106h148v148" stroke-dasharray="6 8" />
+      <path d="M1358 700v110h-148" stroke-dasharray="6 8" />
+      <path d="M70 716h170M70 716v-56" stroke-dasharray="4 8" opacity=".7" />
+      <circle cx="1080" cy="560" r="4" />
+      <circle cx="360" cy="760" r="4" />
+      <path d="M1080 560h96M1080 560v96" stroke-dasharray="3 7" opacity=".6" />
+    </g>
+  </svg>
+  <div class="blueprint__scan"></div>
+</div>
+<div class="bp-hud" id="bpHud" aria-hidden="true">
+  <div class="bp-hud__rail">
+    <span class="bp-hud__axis">Y</span>
+    <span class="bp-hud__track"><i id="bpFill"></i></span>
+    <ol class="bp-hud__sections" id="bpHudSections"></ol>
+  </div>
+  <div class="bp-hud__readout">
+    <span><i>SCROLL</i><b id="bpScroll">000%</b></span>
+    <span><i>SECTION</i><b id="bpSection">00</b></span>
+    <span><i>Y</i><b id="bpY">00000</b></span>
+  </div>
+</div>
+<div class="bp-progress" id="bpProgress" aria-hidden="true"></div>
+<svg class="bp-draw" id="bpDraw" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="1">
+    <path pathLength="1" d="M106 0V900" />
+    <path pathLength="1" d="M106 120H0" />
+    <path pathLength="1" d="M106 780H0" />
+    <path pathLength="1" d="M1334 0V900" />
+    <path pathLength="1" d="M1334 120H1440" />
+    <path pathLength="1" d="M1334 780H1440" />
+    <path pathLength="1" d="M0 68H1440" />
+    <path pathLength="1" d="M0 832H1440" />
+  </g>
+</svg>
+<div class="code-rain" id="codeRain" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+
+<header class="nav" id="nav">
+  <a href="#home" class="nav__logo">
+    <span class="nav__logo-mark">V</span>
+    <span class="nav__logo-text">Vivek<span>.</span></span>
+  </a>
+
+  <nav class="nav__links" id="navLinks">
+    <a href="#about" class="nav__link">About</a>
+    <a href="#skills" class="nav__link">Skills</a>
+    <a href="#playground" class="nav__link">Playground</a>
+    <a href="#projects" class="nav__link">Projects</a>
+    <a href="#experience" class="nav__link">Experience</a>
+    <a href="#contact" class="nav__link">Contact</a>
+  </nav>
+
+  <div class="nav__actions">
+    <button class="cmdk-trigger" id="cmdkTrigger" type="button" aria-label="Open command palette">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="cmdk-trigger__kbd">Ctrl K</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+      <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+    </button>
+    <a href="#contact" class="btn btn--sm btn--primary nav__cta">Hire Me</a>
+    <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="pill reveal">
+          <span class="pill__dot"></span> Available for opportunities
+        </div>
+
+        <h1 class="hero__title reveal">
+          Turning <span class="grad-text">blueprints</span><br />
+          into <span class="grad-text-2">working apps</span>.
+        </h1>
+
+        <p class="hero__role reveal">
+          <span class="hero__role-static">I'm Vivek Singh —</span>
+          <span class="typewriter" id="typewriter"></span><span class="caret">|</span>
+        </p>
+
+        <p class="hero__desc reveal">
+          Android Developer with <strong>1 year of professional experience</strong> shipping enterprise apps —
+          30+ screens, 10–15 REST APIs, MVVM architecture, and 2 junior developers mentored.
+          Three published Android projects on GitHub: SkillForge, UserDirectory and Brewkery.
+        </p>
+
+        <div class="hero__cta reveal">
+          <a href="#projects" class="btn btn--primary">
+            View My Work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="assets/Vivek_Singh_Resume.pdf" class="btn btn--ghost" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+            Download CV
+          </a>
+        </div>
+
+        <div class="hero__socials reveal">
+          <a href="https://github.com/thakurviveksingh1007-android" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.55v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.15c0 .3.21.66.8.55A11.5 11.5 0 0 0 23.5 12A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/vivek-singh-6b281a236" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2.5 9.5h5V21h-5V9.5Zm7.5 0h4.78v1.57h.07c.67-1.2 2.3-2.46 4.73-2.46 5.06 0 6 3.15 6 7.25V21h-5v-5.1c0-1.22-.02-2.8-1.7-2.8-1.7 0-1.96 1.33-1.96 2.7V21h-5V9.5Z"/></svg>
+          </a>
+          <a href="mailto:thakurviveksingh1007@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 6.5L21 6"/></svg>
+          </a>
+          <a href="tel:+918602376588" aria-label="Phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.3 5.5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.6c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9L8.6 10.6a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.6 1.9Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal">
+        <div class="code-card terminal glass" id="terminal">
+          <div class="code-card__bar">
+            <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+            <span class="code-card__name">vivek@portfolio — zsh</span>
+            <span class="terminal__live"><i></i> live</span>
+          </div>
+          <div class="terminal__body">
+            <div class="terminal__output" id="terminalOutput" role="log" aria-live="polite" aria-label="Terminal output">
+              <div class="term-line"><span class="term-prompt">➜ ~</span> whoami</div>
+              <div class="term-line term-out">Vivek Singh — Android Developer</div>
+              <div class="term-line"><span class="term-prompt">➜ ~</span> cat stack.txt</div>
+              <div class="term-line term-out">Kotlin · Java · Compose · MVVM · Retrofit</div>
+              <div class="term-line"><span class="term-prompt">➜ ~</span> status</div>
+              <div class="term-line term-out"><span class="term-ok">●</span> Open to work · Immediate joiner</div>
+            </div>
+            <form class="terminal__form" id="terminalForm" autocomplete="off">
+              <span class="terminal__prompt" aria-hidden="true">➜ ~</span>
+              <input class="terminal__input" id="terminalInput" type="text" aria-label="Terminal command" placeholder="type 'help'" spellcheck="false" autocapitalize="off" />
+            </form>
+            <div class="terminal__quick" role="group" aria-label="Quick terminal commands">
+              <span>try</span>
+              <button type="button" data-cmd="projects">projects</button>
+              <button type="button" data-cmd="resume">resume</button>
+              <button type="button" data-cmd="contact">contact</button>
+              <button type="button" data-cmd="help">help</button>
+            </div>
+          </div>
+          <div class="code-card__glow"></div>
+        </div>
+
+        <div class="float-chip float-chip--1 float-chip--profile glass">
+          <img class="float-chip__photo" src="assets/profile.jpg" alt="Vivek Singh" onerror="this.style.display='none'" />
+          <div><strong>Vivek Singh</strong><small>Android Developer</small></div>
+        </div>
+        <div class="float-chip float-chip--2 glass">
+          <span class="float-chip__icon">🔗</span>
+          <div><strong>10–15</strong><small>APIs integrated</small></div>
+        </div>
+        <div class="float-chip float-chip--3 glass">
+          <span class="float-chip__icon">👥</span>
+          <div><strong>2</strong><small>Juniors mentored</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint"><span></span>Scroll</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Kotlin</span><i>✦</i><span>Java</span><i>✦</i><span>Jetpack Compose</span><i>✦</i><span>MVVM</span><i>✦</i><span>Retrofit</span><i>✦</i><span>Coroutines</span><i>✦</i><span>Firebase</span><i>✦</i><span>Hilt</span><i>✦</i><span>REST APIs</span><i>✦</i><span>SQLite</span><i>✦</i>
+      <span>Kotlin</span><i>✦</i><span>Java</span><i>✦</i><span>Jetpack Compose</span><i>✦</i><span>MVVM</span><i>✦</i><span>Retrofit</span><i>✦</i><span>Coroutines</span><i>✦</i><span>Firebase</span><i>✦</i><span>Hilt</span><i>✦</i><span>REST APIs</span><i>✦</i><span>SQLite</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process" aria-label="How I build">
+    <div class="container">
+      <div class="process__inner">
+        <div class="process__step reveal">
+          <span class="process__num">01</span>
+          <div class="process__icon">📐</div>
+          <h3>Blueprint</h3>
+          <p>Understand the problem, map the data flow and plan the architecture before writing a line.</p>
+        </div>
+        <div class="process__step reveal">
+          <span class="process__num">02</span>
+          <div class="process__icon">⚙️</div>
+          <h3>Build</h3>
+          <p>Clean Kotlin and Java, reusable components, and APIs wired with MVVM and coroutines.</p>
+        </div>
+        <div class="process__step reveal">
+          <span class="process__num">03</span>
+          <div class="process__icon">🧪</div>
+          <h3>Test</h3>
+          <p>Unit tests, Logcat, Postman and Crashlytics — find the bug before the user does.</p>
+        </div>
+        <div class="process__step reveal">
+          <span class="process__num">04</span>
+          <div class="process__icon">🚀</div>
+          <h3>Ship</h3>
+          <p>Release, monitor, refine. A blueprint only matters when it becomes a working app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">01 — About</span>
+        <h2 class="section__title">A developer who cares about <span class="grad-text">the details</span></h2>
+      </div>
+
+      <div class="about">
+        <div class="about__card glass reveal">
+          <div class="about__avatar">
+            <div class="about__avatar-ring"></div>
+            <div class="about__avatar-inner">
+              <span class="about__initials">VS</span>
+              <img class="about__photo" src="assets/profile.jpg" alt="Vivek Singh" onerror="this.remove()" />
+            </div>
+            <span class="about__status"><i></i> Open to work</span>
+          </div>
+          <div class="about__badges">
+            <span class="badge">📍 Indore, India</span>
+            <span class="badge">⚡ Immediate Joiner</span>
+            <span class="badge">🎓 B.Sc. CS, 2019</span>
+          </div>
+          <div class="about__stats">
+            <div class="stat"><strong data-count="1">0</strong><span>Years Exp.</span></div>
+            <div class="stat"><strong data-count="30" data-suffix="+">0</strong><span>Screens</span></div>
+            <div class="stat"><strong data-count="2">0</strong><span>Mentored</span></div>
+          </div>
+        </div>
+
+        <div class="about__text reveal">
+          <p>
+            I'm an Android Developer who loves turning complex enterprise workflows into clean,
+            intuitive mobile experiences. At <strong>Arisetty Technologies</strong>, I worked on
+            <strong>KavachApp</strong> — an enterprise automation platform spanning attendance, leave,
+            visitor management, gate pass, incident reporting and a map-based patrolling module.
+          </p>
+          <p>
+            My approach is simple: <strong>understand the problem, design the data flow, then write code
+            that's easy to read six months later.</strong> I've integrated 10–15 REST APIs with token auth,
+            debugged production issues with Crashlytics and Logcat, and officially mentored 2 junior
+            developers through code reviews and UI/UX improvements.
+          </p>
+          <p>
+            Outside work, I'm building <strong>GharKaBazaar</strong> — a hyperlocal marketplace app with
+            Kotlin, Jetpack Compose, MVVM and Hilt — using an agentic AI coding assistant while manually
+            reviewing every line for quality and security. My GitHub also hosts <strong>SkillForge</strong>
+            (Compose learning app), <strong>UserDirectory</strong> (REST + MVVM directory) and
+            <strong>Brewkery</strong> (Compose ordering app) — each with real API integration, loading/error
+            states and unit tests.
+          </p>
+
+          <div class="about__facts">
+            <div class="fact"><span>Focus</span><strong>Android / Kotlin / Compose</strong></div>
+            <div class="fact"><span>Location</span><strong>Indore — open to relocate</strong></div>
+            <div class="fact"><span>Languages</span><strong>Hindi, English</strong></div>
+            <div class="fact"><span>Availability</span><strong>Immediate</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">02 — Skills</span>
+        <h2 class="section__title">Tools I use to <span class="grad-text-2">ship</span></h2>
+      </div>
+
+      <div class="skills">
+        <div class="skills__group glass reveal">
+          <h3><span class="skills__icon">📱</span> Android</h3>
+          <div class="skills__bars">
+            <div class="bar"><div class="bar__head"><span>Kotlin</span><em>85%</em></div><div class="bar__track"><i data-w="85"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Java</span><em>90%</em></div><div class="bar__track"><i data-w="90"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Jetpack Compose</span><em>75%</em></div><div class="bar__track"><i data-w="75"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>XML Layouts / UI</span><em>88%</em></div><div class="bar__track"><i data-w="88"></i></div></div>
+          </div>
+        </div>
+
+        <div class="skills__group glass reveal">
+          <h3><span class="skills__icon">🧩</span> Architecture</h3>
+          <div class="skills__bars">
+            <div class="bar"><div class="bar__head"><span>MVVM / MVC</span><em>85%</em></div><div class="bar__track"><i data-w="85"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Retrofit / REST</span><em>88%</em></div><div class="bar__track"><i data-w="88"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Coroutines</span><em>78%</em></div><div class="bar__track"><i data-w="78"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Hilt / DI</span><em>70%</em></div><div class="bar__track"><i data-w="70"></i></div></div>
+          </div>
+        </div>
+
+        <div class="skills__group glass reveal">
+          <h3><span class="skills__icon">🛠️</span> Tooling</h3>
+          <div class="skills__bars">
+            <div class="bar"><div class="bar__head"><span>Git / GitHub</span><em>85%</em></div><div class="bar__track"><i data-w="85"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Firebase / FCM</span><em>80%</em></div><div class="bar__track"><i data-w="80"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>SQLite / Room</span><em>78%</em></div><div class="bar__track"><i data-w="78"></i></div></div>
+            <div class="bar"><div class="bar__head"><span>Debugging / Testing</span><em>82%</em></div><div class="bar__track"><i data-w="82"></i></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chips reveal">
+        <span class="chip">Activities</span><span class="chip">Fragments</span><span class="chip">Services</span>
+        <span class="chip">Broadcast Receivers</span><span class="chip">Content Providers</span><span class="chip">Intents</span>
+        <span class="chip">Google Maps</span><span class="chip">FusedLocation</span><span class="chip">Glide / Coil</span>
+        <span class="chip">Gson</span><span class="chip">OkHttp</span><span class="chip">Material Design</span>
+        <span class="chip">ViewBinding</span><span class="chip">Navigation</span><span class="chip">Crashlytics</span>
+        <span class="chip">Postman</span><span class="chip">Jira</span><span class="chip">Gradle</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYGROUND -->
+  <section class="section section--lab" id="playground">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">03 — Playground</span>
+        <h2 class="section__title">From <span class="grad-text">blueprint</span> to <span class="grad-text-2">reality</span></h2>
+        <p class="section__lead">Drag the handle. On the left is the wireframe I plan; on the right is the screen I ship. Same structure, different soul.</p>
+      </div>
+
+      <div class="lab reveal">
+        <div class="lab__stage" id="labStage">
+          <div class="phone phone--real" aria-hidden="true">
+            <div class="phone__frame">
+              <span class="phone__notch"></span>
+              <div class="phone__screen">
+                <div class="ui-hero">
+                  <span class="ui-hero__chip">UI / UX</span>
+                  <span class="ui-hero__play">&#9654;</span>
+                  <span class="ui-hero__title">Design Systems</span>
+                </div>
+                <div class="ui-content">
+                  <div class="ui-line ui-line--title"></div>
+                  <div class="ui-line ui-line--sub"></div>
+                  <div class="ui-badges"><i>4.8 &#9733;</i><i>12 lessons</i><i>2h 10m</i></div>
+                  <div class="ui-instructor">
+                    <span class="ui-instructor__avatar"></span>
+                    <div><i class="ui-line ui-line--name"></i><i class="ui-line ui-line--role"></i></div>
+                  </div>
+                  <div class="ui-lesson"><b>&#10003;</b><i></i><em>08:24</em></div>
+                  <div class="ui-lesson"><b>&#10003;</b><i></i><em>12:10</em></div>
+                  <div class="ui-lesson ui-lesson--locked"><b>&#128274;</b><i></i><em>10:02</em></div>
+                  <div class="ui-cta">Start learning &rarr;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lab__blue" aria-hidden="true">
+            <div class="phone phone--blue">
+              <div class="phone__frame">
+                <span class="phone__notch"></span>
+                <div class="phone__screen">
+                  <div class="bp-hero"><span>hero · 16:9</span></div>
+                  <div class="bp-content">
+                    <div class="bp-box bp-box--title"><span>title · 24sp</span></div>
+                    <div class="bp-box bp-box--sub"><span>subtitle · 14sp</span></div>
+                    <div class="bp-badges"><i></i><i></i><i></i></div>
+                    <div class="bp-instructor"><i></i><div><span></span><span></span></div></div>
+                    <div class="bp-row"><i></i><span>lesson · 48dp</span></div>
+                    <div class="bp-row"><i></i><span>lesson · 48dp</span></div>
+                    <div class="bp-row"><i></i><span>lesson · 48dp</span></div>
+                    <div class="bp-cta"><span>CTA · 48dp</span></div>
+                  </div>
+                </div>
+              </div>
+              <span class="bp-note bp-note--1">360dp</span>
+              <span class="bp-note bp-note--2">24dp</span>
+              <span class="bp-note bp-note--3">radius 8</span>
+              <span class="bp-note bp-note--4">#7C5CFF</span>
+            </div>
+          </div>
+
+          <span class="lab__tag lab__tag--blue">Blueprint</span>
+          <span class="lab__tag lab__tag--real">Reality</span>
+          <button class="lab__handle" id="labHandle" type="button" aria-label="Drag to compare blueprint and reality">
+            <span>&#8596;</span>
+          </button>
+        </div>
+
+        <div class="lab__panel">
+          <div class="lab__badge"><span class="pill__dot"></span> Interactive preview</div>
+          <h3 class="lab__title">Drag to build the screen</h3>
+          <p class="lab__desc">Every screen starts as a plan — boxes, spacing, states. Then it becomes real: color, motion and touch. Slide across to see both layers.</p>
+
+          <div class="lab__specs">
+            <div class="lab__spec"><span>Screen</span><strong>Course detail</strong></div>
+            <div class="lab__spec"><span>Components</span><strong>7 blocks</strong></div>
+            <div class="lab__spec"><span>Architecture</span><strong>MVVM + Compose</strong></div>
+            <div class="lab__spec"><span>Build</span><strong class="ok">BUILD SUCCESSFUL</strong></div>
+          </div>
+
+          <div class="lab__controls">
+            <span>Blueprint</span>
+            <input id="labRange" type="range" min="0" max="100" value="50" aria-label="Blueprint and reality comparison" />
+            <span>Reality</span>
+          </div>
+
+          <p class="lab__hint">Drag the handle, use the slider, or press <kbd>&larr;</kbd> <kbd>&rarr;</kbd>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">04 — Projects</span>
+        <h2 class="section__title">Things I've <span class="grad-text">built</span></h2>
+      </div>
+
+      <div class="projects">
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--kavach" data-project-card="kavach">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag">Enterprise</span>
+            <button class="project__preview" type="button" data-preview="kavach" aria-label="Preview KavachApp UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>KavachApp</h3>
+            <p class="project__sub">Enterprise Workflow Automation · Arisetty Technologies</p>
+            <p>Built and maintained 30+ screens across attendance, leave, visitor management, gate pass, incident reporting and a map-based patrolling module. Integrated 10–15 REST APIs with token auth, Firebase push, Crashlytics and Google Maps.</p>
+            <div class="project__tech">
+              <span>Java</span><span>MVVM</span><span>Retrofit</span><span>Firebase</span><span>Maps</span>
+            </div>
+            <div class="project__meta">Jun 2025 – Jun 2026 · Production</div>
+          </div>
+        </article>
+
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--gkb" data-project-card="gkb">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag project__tag--live">In Progress</span>
+            <button class="project__preview" type="button" data-preview="gkb" aria-label="Preview GharKaBazaar UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>GharKaBazaar</h3>
+            <p class="project__sub">Hyperlocal Marketplace App · Personal Project</p>
+            <p>A marketplace connecting local businesses with customers. Built with Compose, MVVM, Retrofit, Coroutines and Hilt — API-driven catalog, cart and orders, loading/error states, and dependency injection. Developed with an agentic AI assistant and full manual review.</p>
+            <div class="project__tech">
+              <span>Kotlin</span><span>Compose</span><span>MVVM</span><span>Hilt</span><span>Retrofit</span>
+            </div>
+            <div class="project__meta">2026 · Personal</div>
+          </div>
+        </article>
+
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--skillforge" data-project-card="skillforge">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag">Compose</span>
+            <button class="project__preview" type="button" data-preview="skillforge" aria-label="Preview SkillForge UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>SkillForge</h3>
+            <p class="project__sub">Online Learning App · 3-Screen Flow</p>
+            <p>Home, Course Detail and Lesson screens with horizontal category lists, popular courses, instructor cards, free/locked lessons, video-lesson UI, loading/error states and a JUnit test.</p>
+            <div class="project__tech">
+              <span>Kotlin</span><span>Compose</span><span>Hilt</span><span>Coil</span><span>Navigation</span>
+            </div>
+            <div class="project__meta">
+              <span>2026 · GitHub</span>
+              <a class="project__link" href="https://github.com/thakurviveksingh1007-android/skillforge-android-assignment" target="_blank" rel="noopener">View code →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--userdir" data-project-card="userdir">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag">REST + MVVM</span>
+            <button class="project__preview" type="button" data-preview="userdir" aria-label="Preview UserDirectory UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>UserDirectory</h3>
+            <p class="project__sub">User Directory App · List &amp; Detail</p>
+            <p>Splash → list → detail flow using a paginated REST API (limit/skip). Sealed UI states for Loading, Success, Error, No Internet and Empty, SwipeRefresh retry, DiffUtil list, and tel/mailto/maps intents.</p>
+            <div class="project__tech">
+              <span>Kotlin</span><span>MVVM</span><span>Retrofit</span><span>StateFlow</span><span>Glide</span><span>DiffUtil</span>
+            </div>
+            <div class="project__meta">
+              <span>2026 · GitHub</span>
+              <a class="project__link" href="https://github.com/thakurviveksingh1007-android/UserDirectory" target="_blank" rel="noopener">View code →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--pharmacy" data-project-card="pharmacy">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag">Internship</span>
+            <button class="project__preview" type="button" data-preview="pharmacy" aria-label="Preview Pharmacy Store UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>Pharmacy Store App</h3>
+            <p class="project__sub">Medicine Search &amp; Ordering · Logical Soft Tech</p>
+            <p>Medicine search, cart, order placement and tracking with admin inventory management. Applied Activity lifecycle, Intent navigation, REST integration and persistent storage fundamentals.</p>
+            <div class="project__tech">
+              <span>Java</span><span>REST</span><span>SQLite</span><span>XML UI</span>
+            </div>
+            <div class="project__meta">Aug 2024 – Feb 2025 · Internship</div>
+          </div>
+        </article>
+
+        <article class="project glass reveal">
+          <div class="project__visual project__visual--brew" data-project-card="brew">
+            <div class="project__phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__frame">
+                  <span class="phone__notch"></span>
+                  <div class="phone__screen pv-screen" data-card-screen></div>
+                </div>
+              </div>
+            </div>
+            <span class="project__dots" data-card-dots aria-hidden="true"></span>
+            <span class="project__tag">Assignment</span>
+            <button class="project__preview" type="button" data-preview="brew" aria-label="Preview Brewkery UI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              Preview
+            </button>
+          </div>
+          <div class="project__body">
+            <h3>Brewkery</h3>
+            <p class="project__sub">Coffee Ordering App · 4-Screen Flow</p>
+            <p>Menu → Item Detail → Cart → Order Status flow with Compose, MVVM, Retrofit, Coroutines and Coil. Includes unit tests and a clean state model for cart quantities and category filtering.</p>
+            <div class="project__tech">
+              <span>Kotlin</span><span>Compose</span><span>MVVM</span><span>Coil</span><span>Testing</span>
+            </div>
+            <div class="project__meta">
+              <span>2026 · Take-home</span>
+              <a class="project__link" href="https://github.com/thakurviveksingh1007-android/Brewkery" target="_blank" rel="noopener">View code →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">05 — Experience</span>
+        <h2 class="section__title">Where I've <span class="grad-text-2">worked</span></h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__head">
+              <div>
+                <h3>Java Android Developer</h3>
+                <p>Arisetty Technologies Pvt. Ltd. — Indore</p>
+              </div>
+              <span class="timeline__date">Jun 2025 – Jun 2026</span>
+            </div>
+            <ul>
+              <li>Built and maintained 30+ screens with Activities, Fragments, XML layouts, View/Data Binding and Material Design.</li>
+              <li>Integrated 10–15 REST APIs with token auth, JSON/Gson parsing and error handling; added Firebase FCM push, Crashlytics and Google Maps.</li>
+              <li>Debugged production issues with Logcat and Postman; optimized performance and managed Gradle builds.</li>
+              <li>Officially mentored <strong>2 junior developers</strong> through code reviews, debugging and UI/UX guidance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__head">
+              <div>
+                <h3>Application Developer Intern</h3>
+                <p>Logical Soft Tech Pvt. Ltd. — Indore</p>
+              </div>
+              <span class="timeline__date">Aug 2024 – Feb 2025</span>
+            </div>
+            <ul>
+              <li>Built a pharmacy store application with medicine search, cart, order tracking and admin inventory.</li>
+              <li>Applied Activity lifecycle, Intent navigation, REST integration and persistent storage fundamentals.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__head">
+              <div>
+                <h3>Android Development Certificate</h3>
+                <p>Universal Informatics Technologies — Indore</p>
+              </div>
+              <span class="timeline__date">2024</span>
+            </div>
+            <ul>
+              <li>Structured Android training covering core components, UI, storage and app lifecycle.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__head">
+              <div>
+                <h3>B.Sc. Computer Science</h3>
+                <p>Swami Vivekanand College · Barkatullah University, Bhopal</p>
+              </div>
+              <span class="timeline__date">2019</span>
+            </div>
+            <ul>
+              <li>Foundation in programming, data structures, databases and software fundamentals.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section--contact" id="contact">
+    <div class="container">
+      <div class="contact glass reveal">
+        <div class="contact__left">
+          <span class="section__eyebrow">06 — Contact</span>
+          <h2 class="contact__title">Let's build something <span class="grad-text">great</span>.</h2>
+          <p class="contact__desc">
+            I'm open to Android Developer roles and freelance work. Based in Indore, ready to relocate
+            and available to join immediately.
+          </p>
+
+          <div class="contact__links">
+            <a href="mailto:thakurviveksingh1007@gmail.com" class="contact__link">
+              <span class="contact__link-icon">✉️</span>
+              <span><small>Email</small>thakurviveksingh1007@gmail.com</span>
+            </a>
+            <a href="tel:+918602376588" class="contact__link">
+              <span class="contact__link-icon">📞</span>
+              <span><small>Phone</small>+91 86023 76588</span>
+            </a>
+            <a href="https://linkedin.com/in/vivek-singh-6b281a236" target="_blank" rel="noopener" class="contact__link">
+              <span class="contact__link-icon">💼</span>
+              <span><small>LinkedIn</small>vivek-singh-6b281a236</span>
+            </a>
+            <a href="https://github.com/thakurviveksingh1007-android" target="_blank" rel="noopener" class="contact__link">
+              <span class="contact__link-icon">🐙</span>
+              <span><small>GitHub</small>thakurviveksingh1007-android</span>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Recruiter / Company" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about the role..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+          </button>
+          <p class="form-note" id="formNote"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© <span id="year"></span> Vivek Singh. Built with care, coffee &amp; clean code.</p>
+    <a href="#home" class="footer__top">Back to top ↑</a>
+  </div>
+</footer>
+
+<div class="cmdk" id="cmdk" aria-hidden="true">
+  <div class="cmdk__backdrop" data-cmdk-close></div>
+  <div class="cmdk__panel" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmdk__search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="cmdkInput" type="text" placeholder="Jump to a section or run a command..." autocomplete="off" spellcheck="false" />
+      <kbd>ESC</kbd>
+    </div>
+    <ul class="cmdk__list" id="cmdkList"></ul>
+    <div class="cmdk__foot"><span><kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate</span><span><kbd>&crarr;</kbd> select</span></div>
+  </div>
+</div>
+<div class="preview" id="projectPreview" aria-hidden="true">
+  <div class="preview__backdrop" data-preview-close></div>
+  <div class="preview__panel" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <button class="preview__close" id="previewClose" type="button" aria-label="Close project preview">&times;</button>
+    <div class="preview__stage">
+      <div class="phone preview__phone">
+        <div class="phone__frame">
+          <span class="phone__notch"></span>
+          <div class="phone__screen pv-screen" id="previewScreen" role="tabpanel" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="preview__dots" id="previewDots" role="group" aria-label="Preview screens"></div>
+    </div>
+    <div class="preview__info">
+      <span class="preview__tag" id="previewTag"></span>
+      <h3 id="previewTitle"></h3>
+      <p class="preview__sub" id="previewSub"></p>
+      <p class="preview__desc" id="previewDesc"></p>
+      <div class="project__tech" id="previewTech"></div>
+      <div class="preview__tabs" id="previewTabs" role="tablist" aria-label="Project screens"></div>
+      <a class="preview__link" id="previewLink" target="_blank" rel="noopener" hidden>View code →</a>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
