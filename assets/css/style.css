@@ -1373,7 +1373,7 @@ ul { list-style: none; }
 }
 @media (max-width: 560px) {
   .lab__stage { height: 500px; }
-  .phone { transform: translate(-50%, -50%) scale(0.88); }
+  .lab__stage .phone { transform: translate(-50%, -50%) scale(0.88); }
   .lab__specs { grid-template-columns: 1fr; }
   .lab__handle { top: 40px; bottom: 40px; }
   .cmdk { padding-top: 8vh; }
