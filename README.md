@@ -2,7 +2,7 @@
 
 An interactive, responsive portfolio showcasing my Android development work, skills, and experience.
 
-**Live:** https://thakurviveksingh1007-android.github.io/portfolio/
+**Live:** [https://thakurviveksingh1007-android.github.io/portfolio/](https://thakurviveksingh1007-android.github.io/vivek-android-portfolio/)
 
 ## Highlights
 
