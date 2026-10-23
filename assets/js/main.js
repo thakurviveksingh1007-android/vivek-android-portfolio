@@ -601,6 +601,20 @@
         print("Opening about section...", "term-dim");
         scrollToSection("#about");
       },
+      home: () => {
+        print("Opening top...", "term-dim");
+        scrollToSection("#home");
+      },
+      top: () => {
+        print("Opening top...", "term-dim");
+        scrollToSection("#home");
+      },
+      cv: () => terminalCommands.resume(),
+      mail: () => terminalCommands.email(),
+      git: () => terminalCommands.github(),
+      gh: () => terminalCommands.github(),
+      linked: () => terminalCommands.linkedin(),
+      aboutme: () => terminalCommands.about(),
       skills: () => {
         print("Android   Kotlin · Java · Jetpack Compose · XML UI", "term-out");
         print("Arch      MVVM · Retrofit · Coroutines · Hilt", "term-out");
@@ -732,11 +746,12 @@
       }
     });
 
-    document.querySelectorAll("[data-cmd]").forEach((button) => {
-      button.addEventListener("click", () => {
+      document.querySelectorAll("[data-cmd]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
         terminalInput.value = "";
         runCommand(button.dataset.cmd);
-        terminalInput.focus();
+        button.blur();
       });
     });
   }
